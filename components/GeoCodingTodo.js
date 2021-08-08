@@ -24,13 +24,18 @@ const GeoCodingTodo = () => {
     if (todoInput) {
       const addTodoPrisma = async () => {
         await axios
-          .post(`${router.pathname}/api/createLocation`, {
-            todo: todoInput,
-            email: user.email,
-          })
+          .post(
+            `https://uber-mapbox-mv15umz44-jawadammar700.vercel.app/api/createLocation`,
+            {
+              todo: todoInput,
+              email: user.email,
+            }
+          )
           .then(async data => {
             await axios
-              .get(`${router.pathname}/api/createLocation`)
+              .get(
+                `https://uber-mapbox-mv15umz44-jawadammar700.vercel.app/api/createLocation`
+              )
               .then(res => {
                 dispatch(SetTodo(res.data.allLocations))
               })
@@ -46,10 +51,13 @@ const GeoCodingTodo = () => {
   const handleRemove = (id, userId) => {
     const remove = async id => {
       await axios
-        .post(`${router.pathname}/api/removeTodoLocation`, {
-          id: id,
-          userId: userId,
-        })
+        .post(
+          `https://uber-mapbox-mv15umz44-jawadammar700.vercel.app/api/removeTodoLocation`,
+          {
+            id: id,
+            userId: userId,
+          }
+        )
         .then(data => {
           dispatch(SetTodo(data.data.filtered))
         })

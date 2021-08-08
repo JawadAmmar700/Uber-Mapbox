@@ -21,9 +21,13 @@ export default function Home() {
           dispatch(Check(user))
         }
 
-        await axios.get(`${router.pathname}/api/createLocation`).then(res => {
-          dispatch(SetTodo(res.data.allLocations))
-        })
+        await axios
+          .get(
+            `https://uber-mapbox-mv15umz44-jawadammar700.vercel.app/api/createLocation`
+          )
+          .then(res => {
+            dispatch(SetTodo(res.data.allLocations))
+          })
       } catch (err) {
         console.log(err)
       }
