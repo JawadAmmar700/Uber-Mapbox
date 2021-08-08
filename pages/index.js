@@ -8,26 +8,28 @@ import axios from "axios"
 import { Magic } from "magic-sdk"
 import { useRouter } from "next/router"
 
+let magic = ""
+if (typeof window !== "undefined") {
+  magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_KEY)
+}
+
 export default function Home() {
   const dispatch = useDispatch()
   const router = useRouter()
 
   useEffect(() => {
+    // console.log(process.env.MAGIC_KEY)
     const chechUser_FetchTodos = async () => {
-      const magic = new Magic(process.env.magicKEY)
+      // const magic = new Magic(process.env.MAGIC_KEY)
       try {
         if (magic.user.isLoggedIn()) {
           let user = await magic.user.getMetadata()
           dispatch(Check(user))
         }
 
-        await axios
-          .get(
-            '/api/createLocation'
-          )
-          .then(res => {
-            dispatch(SetTodo(res.data.allLocations))
-          })
+        await axios.get("/api/createLocation").then(res => {
+          dispatch(SetTodo(res.data.allLocations))
+        })
       } catch (err) {
         console.log(err)
       }

@@ -21,7 +21,7 @@ const paypalModel = ({ showModal, setShowModal, price }) => {
               setShowModal(false)
             }}
             options={{
-              clientId: process.env.paypalKEY,
+              clientId: process.env.NEXT_PUBLIC_PAYPAL_KEY,
             }}
           />
         </ModalBody>

@@ -14,7 +14,7 @@ import { fetchData, directionsApi } from "../useFetchData"
 import Button from "@material-tailwind/react/Button"
 import PaypalModel from "./paypalModel"
 
-const MAPBOX_TOKEN = process.env.mapboxKEY
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY
 
 const navControlStyle = {
   right: 10,

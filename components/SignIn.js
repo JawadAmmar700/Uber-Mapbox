@@ -12,7 +12,7 @@ import { Add } from "../redux/features/UserSlice"
 
 let magic = ""
 if (typeof window !== "undefined") {
-  magic = new Magic(process.env.magicKEY)
+  magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_KEY)
 }
 
 const SignIn = () => {
@@ -26,7 +26,7 @@ const SignIn = () => {
       await magic.auth.loginWithMagicLink({ email })
 
       let user = await magic.user.getMetadata()
-      console.log(user)
+
       dispatch(Add(user))
     }
   }
@@ -45,6 +45,7 @@ const SignIn = () => {
               color="lightBlue"
               onChange={e => setEmail(e.target.value)}
               placeholder="Email Address"
+              iconName=""
             />
           </div>
         </CardBody>
