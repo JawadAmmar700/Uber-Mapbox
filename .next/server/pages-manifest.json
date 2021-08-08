@@ -3,7 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/createUser": "pages/api/createUser.js",
-  "/Map": "pages/Map.js",
-  "/api/createLocation": "pages/api/createLocation.js"
+  "/Map": "pages/Map.js"
 }

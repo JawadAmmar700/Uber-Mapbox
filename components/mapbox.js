@@ -1,6 +1,7 @@
 import "mapbox-gl/dist/mapbox-gl.css"
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css"
-import React, { useState, useRef, useCallback, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
+import Image from "next/image"
 import ReactMapGL, {
   Marker,
   Popup,
@@ -30,7 +31,6 @@ const Mapbox = ({ locationProp }) => {
   const [originName, setOriginName] = useState("")
   const [destinationName, setDestinationName] = useState("")
   const [show, setShow] = useState(false)
-  const [location, setLocation] = useState(locationProp)
   const [ride, setRide] = useState(null)
   const [showModal, setShowModal] = useState(false)
 
@@ -100,7 +100,6 @@ const Mapbox = ({ locationProp }) => {
       setDestinationName(name)
     )
 
-    console.log("zoom", newViewport)
     setTimeout(() => {
       setShow(true)
     }, newViewport.transitionDuration)
@@ -115,7 +114,6 @@ const Mapbox = ({ locationProp }) => {
     setGeo(null)
     setMarkers(markers.slice(0, 1))
     setShow(false)
-    setLocation("")
   }
 
   return (
@@ -162,9 +160,11 @@ const Mapbox = ({ locationProp }) => {
                   draggable={false}
                   onClick={() => setShowpopup(id)}
                 >
-                  <img
+                  <Image
                     src="https://img.icons8.com/color/48/000000/map-pin.png"
                     alt="location mark"
+                    width={40}
+                    height={40}
                   />
                 </Marker>
                 {showPopup === id && (
@@ -202,7 +202,7 @@ const Mapbox = ({ locationProp }) => {
           position="top-left"
           placeholder="choose your destination"
           onClear={clearSearch}
-          inputValue={location ? location : ""}
+          inputValue={locationProp ? locationProp : ""}
         />
       </div>
       {show == true ? (

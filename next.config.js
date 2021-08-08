@@ -7,4 +7,7 @@ module.exports = {
       "pk.eyJ1IjoiamF3YWRhbW1hcjEyIiwiYSI6ImNrcm42aG42NDRlM3oydXA4NWoza2N6dG8ifQ.UjeHP4M3MlTJg78K0THqRQ",
     magicKEY: "pk_live_AE17745A8A693DEA",
   },
+  images: {
+    domains: ["img.icons8.com"],
+  },
 }

@@ -15,7 +15,6 @@ const GeoCodingTodo = () => {
   const [showModal, setShowModal] = useState(false)
   const [todoInput, setTodoInput] = useState("")
   const todo = useSelector(selectTodo)
-  console.log(todo)
   const user = useSelector(selectUser)
   const dispatch = useDispatch()
   const router = useRouter()
@@ -30,7 +29,6 @@ const GeoCodingTodo = () => {
             email: user.email,
           })
           .then(async data => {
-            console.log(data)
             await axios.get("/api/createLocation").then(res => {
               dispatch(SetTodo(res.data.allLocations))
             })
@@ -51,7 +49,6 @@ const GeoCodingTodo = () => {
           userId: userId,
         })
         .then(data => {
-          console.log(data)
           dispatch(SetTodo(data.data.filtered))
         })
         .catch(err => console.log(err))

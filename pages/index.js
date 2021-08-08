@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import Head from "next/head"
 import EntryPage from "../components/EntryPage"
-import Mapbox from "../components/mapbox"
 import { useDispatch } from "react-redux"
 import { Check } from "../redux/features/UserSlice"
 import { SetTodo } from "../redux/features/todoSlice"

@@ -1,8 +1,6 @@
 import React from "react"
 import Mapbox from "../components/mapbox"
 import { useRouter } from "next/router"
-import ProgressBar from "@badrap/bar-of-progress"
-import Router from "next/router"
 
 const Map = () => {
   const router = useRouter()
