@@ -24,14 +24,16 @@ const GeoCodingTodo = () => {
     if (todoInput) {
       const addTodoPrisma = async () => {
         await axios
-          .post("/api/createLocation", {
+          .post(`${router.pathname}/api/createLocation`, {
             todo: todoInput,
             email: user.email,
           })
           .then(async data => {
-            await axios.get("/api/createLocation").then(res => {
-              dispatch(SetTodo(res.data.allLocations))
-            })
+            await axios
+              .get(`${router.pathname}/api/createLocation`)
+              .then(res => {
+                dispatch(SetTodo(res.data.allLocations))
+              })
           })
           .catch(err => console.log(err))
       }
@@ -44,7 +46,7 @@ const GeoCodingTodo = () => {
   const handleRemove = (id, userId) => {
     const remove = async id => {
       await axios
-        .post("/api/removeTodoLocation", {
+        .post(`${router.pathname}/api/removeTodoLocation`, {
           id: id,
           userId: userId,
         })

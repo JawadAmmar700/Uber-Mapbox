@@ -6,9 +6,11 @@ import { Check } from "../redux/features/UserSlice"
 import { SetTodo } from "../redux/features/todoSlice"
 import axios from "axios"
 import { Magic } from "magic-sdk"
+import { useRouter } from "next/router"
 
 export default function Home() {
   const dispatch = useDispatch()
+  const router = useRouter()
 
   useEffect(() => {
     const chechUser_FetchTodos = async () => {
@@ -19,7 +21,7 @@ export default function Home() {
           dispatch(Check(user))
         }
 
-        await axios.get("/api/createLocation").then(res => {
+        await axios.get(`${router.pathname}/api/createLocation`).then(res => {
           dispatch(SetTodo(res.data.allLocations))
         })
       } catch (err) {
