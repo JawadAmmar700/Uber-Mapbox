@@ -4,6 +4,7 @@ import { Provider } from "react-redux"
 import store from "../redux/app/store"
 import ProgressBar from "@badrap/bar-of-progress"
 import Router from "next/router"
+import { CookiesProvider } from "react-cookie"
 
 const progress = new ProgressBar({
   size: 2,
@@ -19,7 +20,9 @@ Router.events.on("routeChangeError", progress.finish)
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <CookiesProvider>
+        <Component {...pageProps} />
+      </CookiesProvider>
     </Provider>
   )
 }

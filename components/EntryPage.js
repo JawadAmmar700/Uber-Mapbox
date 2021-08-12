@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import SignIn from "./SignIn"
 import Button from "@material-tailwind/react/Button"
 import { useRouter } from "next/router"
@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { selectUser, Remove } from "../redux/features/UserSlice"
 import GeoCodingTodo from "./GeoCodingTodo"
 import { Magic } from "magic-sdk"
+import { useCookies } from "react-cookie"
 
 let magic = ""
 if (typeof window !== "undefined") {
@@ -16,9 +17,11 @@ const EntryPage = () => {
   const router = useRouter()
   const user = useSelector(selectUser)
   const dispatch = useDispatch()
+  const [cookies, setCookie, removeCookie] = useCookies(["userToken"])
 
   const handleLogout = async () => {
     await magic.user.logout()
+    removeCookie("userToken")
     dispatch(Remove())
   }
 

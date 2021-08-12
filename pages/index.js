@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useLayoutEffect } from "react"
 import Head from "next/head"
 import EntryPage from "../components/EntryPage"
 import { useDispatch } from "react-redux"
@@ -13,20 +13,22 @@ if (typeof window !== "undefined") {
   magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_KEY)
 }
 
-export default function Home() {
+export const getServerSideProps = async ({ req, res }) => {
+  return {
+    props: { user: JSON.parse(req?.cookies?.userToken) || null },
+  }
+}
+
+export default function Home({ user }) {
   const dispatch = useDispatch()
   const router = useRouter()
 
-  useEffect(() => {
-    // console.log(process.env.MAGIC_KEY)
+  useLayoutEffect(() => {
+    if (user) {
+      dispatch(Check(user))
+    }
     const chechUser_FetchTodos = async () => {
-      // const magic = new Magic(process.env.MAGIC_KEY)
       try {
-        if (magic.user.isLoggedIn()) {
-          let user = await magic.user.getMetadata()
-          dispatch(Check(user))
-        }
-
         await axios.get("/api/createLocation").then(res => {
           dispatch(SetTodo(res.data.allLocations))
         })

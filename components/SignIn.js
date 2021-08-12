@@ -9,6 +9,7 @@ import H5 from "@material-tailwind/react/Heading5"
 import { Magic } from "magic-sdk"
 import { useDispatch } from "react-redux"
 import { Add } from "../redux/features/UserSlice"
+import { useCookies } from "react-cookie"
 
 let magic = ""
 if (typeof window !== "undefined") {
@@ -18,15 +19,15 @@ if (typeof window !== "undefined") {
 const SignIn = () => {
   const [email, setEmail] = useState("")
   const dispatch = useDispatch()
+  const [cookies, setCookie] = useCookies(["userToken"])
 
   const handleSubmit = async event => {
     event.preventDefault()
 
     if (email) {
       await magic.auth.loginWithMagicLink({ email })
-
       let user = await magic.user.getMetadata()
-
+      setCookie("userToken", user)
       dispatch(Add(user))
     }
   }
