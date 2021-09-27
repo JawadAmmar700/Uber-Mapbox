@@ -14,18 +14,19 @@ if (typeof window !== "undefined") {
 }
 
 export const getServerSideProps = async ({ req, res }) => {
+  const token = req?.cookies?.userToken || null
   return {
-    props: { user: JSON.parse(req?.cookies?.userToken) || null },
+    props: { user: token },
   }
 }
 
 export default function Home({ user }) {
   const dispatch = useDispatch()
-  const router = useRouter()
+  console.log(user)
 
   useLayoutEffect(() => {
     if (user) {
-      dispatch(Check(user))
+      dispatch(Check(JSON.parse(user)))
     }
     const chechUser_FetchTodos = async () => {
       try {

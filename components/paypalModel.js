@@ -5,8 +5,11 @@ import ModalBody from "@material-tailwind/react/ModalBody"
 import ModalFooter from "@material-tailwind/react/ModalFooter"
 import Button from "@material-tailwind/react/Button"
 import { PayPalButton } from "react-paypal-button-v2"
-
+import { useSelector } from "react-redux"
+import { selectUser } from "../redux/features/UserSlice"
 const paypalModel = ({ showModal, setShowModal, price }) => {
+  const user = useSelector(selectUser)
+
   return (
     <div>
       <Modal size="sm" active={showModal} toggler={() => setShowModal(false)}>
@@ -17,7 +20,7 @@ const paypalModel = ({ showModal, setShowModal, price }) => {
           <PayPalButton
             amount={price}
             onSuccess={(details, data) => {
-              alert("Transaction completed by " + details.payer.name.given_name)
+              alert("Transaction completed by " + user?.email)
               setShowModal(false)
             }}
             options={{
