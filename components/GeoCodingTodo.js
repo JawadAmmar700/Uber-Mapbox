@@ -29,9 +29,11 @@ const GeoCodingTodo = () => {
             email: user.email,
           })
           .then(async data => {
-            await axios.get("/api/createLocation").then(res => {
-              dispatch(SetTodo(res.data.allLocations))
-            })
+            await axios
+              .get(`${process.env.HOST}/api/createLocation`)
+              .then(res => {
+                dispatch(SetTodo(res.data.allLocations))
+              })
           })
           .catch(err => console.log(err))
       }
@@ -44,7 +46,7 @@ const GeoCodingTodo = () => {
   const handleRemove = (id, userId) => {
     const remove = async id => {
       await axios
-        .post("/api/removeTodoLocation", {
+        .post(`${process.env.HOST}/api/removeTodoLocation`, {
           id: id,
           userId: userId,
         })

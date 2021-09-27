@@ -30,7 +30,7 @@ export default function Home({ user }) {
     }
     const chechUser_FetchTodos = async () => {
       try {
-        await axios.get("/api/createLocation").then(res => {
+        await axios.get(`${process.env.HOST}/api/createLocation`).then(res => {
           dispatch(SetTodo(res.data.allLocations))
         })
       } catch (err) {
