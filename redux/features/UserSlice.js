@@ -11,7 +11,7 @@ export const UserSlice = createSlice({
       state.user = action.payload
       const fetch = async () => {
         await axios
-          .post("api/createUser", {
+          .post(`${process.env.NEXT_PUBLIC_HOST}/api/createUser`, {
             email: action.payload.email,
           })
           .then(res => console.log(res))

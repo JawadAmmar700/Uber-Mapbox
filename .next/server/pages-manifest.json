@@ -3,5 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/Map": "pages/Map.js"
+  "/api/createLocation": "pages/api/createLocation.js",
+  "/api/removeTodoLocation": "pages/api/removeTodoLocation.js"
 }

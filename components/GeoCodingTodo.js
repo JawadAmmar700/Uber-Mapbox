@@ -24,13 +24,13 @@ const GeoCodingTodo = () => {
     if (todoInput) {
       const addTodoPrisma = async () => {
         await axios
-          .post("/api/createLocation", {
+          .post(`${process.env.NEXT_PUBLIC_HOST}/api/createLocation`, {
             todo: todoInput,
             email: user.email,
           })
           .then(async data => {
             await axios
-              .get(`${process.env.HOST}/api/createLocation`)
+              .get(`${process.env.NEXT_PUBLIC_HOST}/api/createLocation`)
               .then(res => {
                 dispatch(SetTodo(res.data.allLocations))
               })
@@ -46,7 +46,7 @@ const GeoCodingTodo = () => {
   const handleRemove = (id, userId) => {
     const remove = async id => {
       await axios
-        .post(`${process.env.HOST}/api/removeTodoLocation`, {
+        .post(`${process.env.NEXT_PUBLIC_HOST}/api/removeTodoLocation`, {
           id: id,
           userId: userId,
         })
