@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npx prisma generate"
+    "postinstall": "npx prisma generate && npx prisma migrate deploy"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",
